@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- there can be one and only 1 request-mappings element -->
+<!-- there must be one to many url-mapping elements -->
+<!ELEMENT request-mappings (url-mapping+)>
+
+<!-- the url-mapping element must have both 'url' and 'currentpage' attributes -->
+<!ATTLIST url-mapping
+	url CDATA #REQUIRED
+	currentpage CDATA #REQUIRED
+>
+
+<!-- the url-mapping element must have a request-handler child element  -->
+<!ELEMENT url-mapping (request-handler)>
+
+<!-- the request-handler element must have a 'class' attribute  -->
+<!ATTLIST request-handler class CDATA #REQUIRED>
+
+<!-- the request-handler element must have command-mapping elements  -->
+<!ELEMENT request-handler (command-mapping+)>
+
+<!-- the command-mapping element must have 'command' attribute.  -->
+<!-- the 'target-page' attribute is optional -->
+<!ATTLIST command-mapping
+	command CDATA #REQUIRED
+	targetpage CDATA #IMPLIED
+>
+
+<!ELEMENT command-mapping EMPTY>
+
+

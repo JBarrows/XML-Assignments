@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+<!-- Created by Joel Barr (776592) -->
+<!-- Date: June 21, 2018           -->
+<!-- XML Assignment 2              -->
+<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- one and only one employees element -->
+	<xs:element name="employees">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- employees element must have one and can have more than one employee elements -->
+				<xs:element name="employee" maxOccurs="unbounded" type="myEmployee" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="myEmployee">
+		<xs:sequence>
+			<!-- employee element must have one and only one expertise element --> 
+			<!-- and must have one to many consultedClient child elements      -->
+			<xs:element name="expertise" type="xs:string" />
+			<xs:element name="consultedClient" maxOccurs="unbounded">
+				<xs:complexType>
+					<!-- consultedClient element must have name, position attributes -->
+					<!-- durationInMonths attribute is optional                      -->
+					<xs:attribute name="name" use="required" type="xs:string" />
+					<xs:attribute name="position" use="required" type="myPosition" />
+					<!-- DurationInMonths must be a positive integer -->
+					<xs:attribute name="durationInMonths" use="optional" type="xs:positiveInteger" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<!-- employee element must have name, sinNumber and sex attributes -->
+		<!-- all attributes here are required except for birthdate         -->
+		<xs:attribute name="name" use="required" type="xs:string" />
+		<xs:attribute name="birthdate" use="optional" type="xs:short" />
+		<xs:attribute name="sinNumber" use="required" type="xs:string" />
+		<xs:attribute name="sex" use="required" type="mySex" />
+	</xs:complexType>
+	
+	<!-- Sex and positions attributes must have enumerations -->
+	<xs:simpleType name="myPosition">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="analyst"/>
+			<xs:enumeration value="manager"/>
+			<xs:enumeration value="programmer"/>
+			<xs:enumeration value="teamLead"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="mySex">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="female"/>
+			<xs:enumeration value="male"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
