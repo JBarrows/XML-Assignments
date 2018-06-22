@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- there can be one and only 1 request-mappings element -->
 <!-- there must be one to many url-mapping elements -->
+<!-- Nice work and commenting here Joel.  Your dtd properly validates the xml file
+and follows all the business rules.  Good work
+10/10
+-->
 <!ELEMENT request-mappings (url-mapping+)>
 
 <!-- the url-mapping element must have both 'url' and 'currentpage' attributes -->
